@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<TITLE>Multithreaded Management</TITLE>
+<!-- Changed by: Henrik Frystyk Nielsen, 12-Jul-1995 -->
+</HEAD>
+<BODY>
+
+<H1>Multithreaded Management of Sockets</H1>
+
+<PRE>
+/*
+**	(c) COPYRIGHT MIT 1995.
+**	Please first read the full copyright statement in the file COPYRIGH.
+*/
+</PRE>
+
+This module contains the routines for handling the set of active
+sockets currently in use by the multithreaded clients. It is an
+internal module to the Library, the application interface is
+implemented in the <A HREF="HTEvntrg.html">Event Module</A>. Look for
+more information in the <A
+HREF="http://www.w3.org/hypertext/WWW/Library/User/Architecture/Threads.html">
+Multithread Specifications</A>. <P>
+
+This module is implemented by <A HREF="HTThread.c">HTThread.c</A>, and
+it is a part of the <A NAME="z10"
+HREF="http://www.w3.org/hypertext/WWW/Library/">
+W3C Reference Library</A>.
+
+<PRE>
+#ifndef HTTHREAD_H
+#define HTTHREAD_H
+#include "HTAccess.h"
+</PRE>
+
+<A NAME="Init"><H2>Initiation</H2></A>
+
+This function initiates the arrays of socket descriptors used in the
+Library. It's called in <A HREF="HTAccess.html#Library">HTLibInit()</A>.
+
+<PRE>
+extern BOOL HTThreadInit	NOPARAMS;
+</PRE>
+
+<IMG ALT="NOTE"
+SRC="http://www.w3.org/hypertext/WWW/Icons/32x32/caution.gif"> It is
+<B>VERY</B> important that this one is called before the first
+request, as otherwise the socket bit arrays are uninitialized.
+
+<H2>Registration of a Thread</H2>
+
+These two functions put a <A HREF="HTAccess.html#HTNetInfo">HTNetInfo
+object</A> into the list of threads and takes it out again
+respectively. A normal place to call these functions would be on
+creation and deletion of the <CODE>HTNetInfo</CODE> data structure.
+
+<PRE>
+extern BOOL HTThread_new	PARAMS((HTNetInfo * new_net));
+extern BOOL HTThread_clear	PARAMS((HTNetInfo * old_net));
+</PRE>
+
+<H2>Kill a Thread</H2>
+
+This function forces a call to the load function and resets the state
+machine. It also removes the thread from the list of active threads.
+
+<PRE>
+extern BOOL HTThread_kill	PARAMS((HTNetInfo * net));
+</PRE>
+
+<H2>Is Thread Alive?</H2>
+
+Checks whether a thread is still registered and if so returns the
+corresponding <A HREF="HTAccess.html#z1">HTRequest structure</A>, else
+return NULL.
+
+<PRE>
+extern HTRequest *HTThread_isAlive	PARAMS((HTNetInfo * net));
+</PRE>
+
+<H2>Get Copy of Registered Bit-arrays</H2>
+
+This function returns a copy of the current bit-arrays contaning the
+active sockets registered for <CODE>READ</CODE> and
+<CODE>WRITE</CODE>.
+
+<PRE>
+extern int HTThreadGetFDInfo 	PARAMS((fd_set * read, fd_set * write));
+</PRE>
+
+<H2>Registration of the State of a Socket</H2>
+
+When a new request is initiated from the client and a socket has been
+created, is gets registered in a linked list of <A
+HREF="HTAccess.html#HTNetInfo">HTNetInfo objects</A>. The object stays
+in this list until the request has ended (either having an error or
+success as result). Every time the program execution gets to a point
+where a socket operation would normally block the program, this
+function is called in order to register the socket as waiting for the
+actual operation.
+
+<PRE>
+typedef enum _HTThreadAction {
+    THD_SET_WRITE=0,
+    THD_CLR_WRITE,
+    THD_SET_READ,
+    THD_CLR_READ,
+    THD_SET_INTR,
+    THD_CLR_INTR,
+    THD_CLOSE,
+    THD_SET_CONNECT,
+    THD_CLR_CONNECT
+} HTThreadAction;
+</PRE>
+
+<PRE>
+extern void HTThreadState		PARAMS((SOCKFD sockfd,
+					HTThreadAction action));
+extern void HTThreadStateByRequest	PARAMS((HTRequest * request,
+					HTThreadAction action));
+</PRE>
+
+This function makes life easier if you want to mark all sockets as
+interrupted.
+
+<PRE>
+extern BOOL HTThreadMarkIntrAll	PARAMS((CONST fd_set * fd_user));
+</PRE>
+
+<H2>Is a Thread Interrupted?</H2>
+
+This function returns YES if the socket is registered as interrupted
+
+<PRE>
+extern BOOL HTThreadIntr	PARAMS((SOCKFD sockfd));
+</PRE>
+
+<H2>Any Threads Registered?</H2>
+
+This function returns YES if any HTTP sockets are still registered in the
+set of active sockets. Otherwise it returns NO.
+
+<PRE>
+extern BOOL HTThreadActive	NOPARAMS;
+</PRE>
+
+<H2>Select an Active Thread</H2>
+
+When the <CODE>select</CODE> function has returned a set of pending
+sockets this functions selects one of them and finds the
+correseponding request structure.
+
+<PRE>
+extern HTRequest *HTThread_getRequest	PARAMS((CONST fd_set * fd_read,
+						CONST fd_set * fd_write));
+
+#endif
+</PRE>
+
+End of HTThread module
+</BODY>
+</HTML>
+
+

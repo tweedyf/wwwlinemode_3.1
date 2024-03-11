@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<TITLE>String handling for libwww</TITLE>
+</HEAD>
+<BODY>
+
+<H1>String Management</H1>
+
+<PRE>
+/*
+**	(c) COPYRIGHT MIT 1995.
+**	Please first read the full copyright statement in the file COPYRIGH.
+*/
+</PRE>
+
+These functions provide functionality for case-independent string
+comparison and allocations with copies etc. <P>
+
+This module is implemented by <A HREF="HTString.c">HTString.c</A>, and
+it is a part of the <A NAME="z10"
+HREF="http://www.w3.org/hypertext/WWW/Library/">
+W3C Reference Library</A>. <P>
+
+<PRE>
+#ifndef HTSTRING_H
+#define HTSTRING_H
+
+extern CONST char * HTLibraryVersion;	/* String for help screen etc */
+</PRE>
+
+<H2><A NAME="dyn">Dynamic String Manipulation</A></H2>
+
+These two functions are dynamic versions of <CODE>strcpy</CODE> and
+<CODE>strcat</CODE>. They use <CODE>malloc</CODE> for allocating space
+for the string. If <CODE>StrAllocCopy</CODE> is called with a non-NULL
+dest, then this is freed before the new value is assigned so that only
+the <EM>last</EM> string created has to be freed by the user. If
+<CODE>StrAllocCat</CODE> is called with a NULL pointer as destination
+then it is equivalent to <CODE>StrAllocCopy</CODE>.
+
+<PRE>
+#define StrAllocCopy(dest, src) HTSACopy (&amp;(dest), src)
+#define StrAllocCat(dest, src)  HTSACat  (&amp;(dest), src)
+extern char * HTSACopy PARAMS ((char **dest, CONST char *src));
+extern char * HTSACat  PARAMS ((char **dest, CONST char *src));
+</PRE>
+
+<H2><A NAME="utils">Case-insensitive String Comparison</A></H2>
+
+The usual routines (comp instead of cmp) had some problem.
+
+<PRE>
+extern int strcasecomp  PARAMS((CONST char *a, CONST char *b));
+extern int strncasecomp PARAMS((CONST char *a, CONST char *b, int n));
+</PRE>
+
+<H2>Case-insensitive strstr</H2>
+
+This works like <CODE>strstr()</CODE> but is not case-sensitive.
+
+<PRE>
+extern char * strcasestr PARAMS((char *	s1, char * s2));
+</PRE>
+
+<H2>Strip white space off a string</H2>
+
+Return value points to first non-white character, or to '/0' if
+none. All trailing white space is OVERWRITTEN with zero.
+
+<PRE>
+extern char * HTStrip PARAMS((char * s));
+</PRE>
+
+<H2>Next word or quoted string</H2>
+
+This function returns a RFC822 word separated by space, comma, or
+semi-colons.
+
+<PRE>
+extern char * HTNextField PARAMS ((char** pstr));
+</PRE>
+
+<H2>RFC1123 Date/Time Stamp String</H2>
+
+Returns a pointer to a static area!
+
+<PRE>
+extern CONST char *HTDateTimeStr PARAMS((time_t *calendar, BOOL local));
+</PRE>
+
+
+<H2>Timezone Offset</H2>
+
+Calculates the offset from GMT in seconds. This is called from <A
+HREF="HTAccess.html#Library">HTLibInit()</A>.
+
+<PRE>
+extern long HTGetTimeZoneOffset NOPARAMS;
+</PRE>
+
+<H2>Parse a Date/Time String</H2>
+
+Converts a string representation in GMT to a local representation of
+localtime <CODE>time_t</CODE>.
+
+<PRE>
+extern time_t HTParseTime PARAMS((CONST char * str));
+</PRE>
+
+
+<H2>Unique Message-ID String</H2>
+
+<PRE>
+extern CONST char *HTMessageIdStr NOPARAMS;
+#endif
+</PRE>
+
+End of declaration module
+
+</BODY>
+</HTML>

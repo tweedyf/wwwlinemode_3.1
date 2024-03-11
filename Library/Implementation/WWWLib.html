@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<TITLE>Global Include File for W3C Reference Library</TITLE>
+<!-- Changed by: Henrik Frystyk Nielsen,  8-Jul-1995 -->
+<NEXTID N="z11">
+</HEAD>
+<BODY>
+
+<H1>Global Include File for W3C Reference Library</H1>
+
+<PRE>
+/*
+**	(c) COPYRIGHT MIT 1995.
+**	Please first read the full copyright statement in the file COPYRIGH.
+*/
+</PRE>
+
+This is the main include file necessary in order to use the W3C
+Reference Library. Currently the file only consists of well-known
+Library include files, but the goal is to define a nice API in this
+file, so that all external functionality can be reached through this
+one.
+
+<PRE>
+#ifndef WWWLIB_H
+#define WWWLIB_H
+
+#ifdef __cplusplus
+extern "C" { 
+#endif
+
+/* System dependencies */
+#include "tcp.h"
+#include "HTUtils.h"			/* Macros and other stuff */
+
+/* General Utilities */
+#include "HTString.h"
+#include "HTList.h"			/* Memory management for lists  */
+#include "HTChunk.h"			/* Memory management for chunks */
+#include "HTSocket.h"			/* Network read and write */
+
+/* Initialization routines */
+#include "HTInit.h"			/* Initialization functions */
+#include "HTProxy.h"
+
+/* Format Management, and Access functions for loading a URL etc. */
+#include "HTMethod.h"			/* Request methods like PUT, GET */
+#include "HTFormat.h"			/* Stream Stack and content neg. */
+#include "HTAccess.h"			/* Document access network code */
+
+/* URLs and Anchors - Internal representation of URLs */
+#include "HTAnchor.h"			/* Anchor class Definition */
+#include "HTParse.h"			/* Parse URLs */
+
+/* Access Authentication */
+#include "HTAAUtil.h"
+#include "HTUU.h"
+
+/* History Management */
+#include "HTHist.h"			/* Navigational aids */
+
+/* Presenters, converters and other streams */
+#include "HTML.h"			/* For HTML parser */
+#include "HTMLGen.h"			/* For reformatting HTML */
+#include "HTWriter.h"
+#include "HTFWrite.h"
+#include "HTMIME.h"
+#include "HTWSRC.h"
+#include "HTNetTxt.h"
+
+/* Directory Listings */
+#include "HTIcons.h"
+#include "HTDirBrw.h"
+#include "HTDescpt.h"
+
+/* Graphic Object and Styles */
+#include "HText.h"
+#include "HTStyle.h"
+
+/* Local file access and logging */
+#include "HTBind.h"			/* Binding to file suffixes */
+#include "HTLog.h"
+
+/* For TCP relevant information (mail address etc.) */
+#include "HTTCP.h"
+
+/* Management of Rule Files for configuring the application */
+#include "HTRules.h"
+
+/* Event loop for multithreaded functionality */
+#include "HTEvntrg.h"
+
+/* Messages and User prompts */
+#include "HTAlert.h"
+#include "HTError.h"
+
+#ifdef __cplusplus
+} /* end extern C definitions */
+#endif
+
+#endif
+</PRE>
+
+End of WWWLib API definition
+
+</BODY>
+</HTML>
