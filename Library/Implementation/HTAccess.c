@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*								     HTAccess.c
 **	ACCESS MANAGER
 **

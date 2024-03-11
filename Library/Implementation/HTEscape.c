@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								     HTEscape.c
 **	ESCAPE AND UNESACPE ILLEGAL CHARACTERS IN A URI
 **

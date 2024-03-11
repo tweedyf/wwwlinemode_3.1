@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*									HTFTP.c
 **	FILE TRANSFER PROTOCOL (FTP) CLIENT
 **

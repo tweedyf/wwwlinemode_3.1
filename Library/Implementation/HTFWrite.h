@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*                                           Cache Manager and Writing to a File using ANSI C
                      CACHE MANAGER AND WRITING TO A FILE USING ANSI C
                                              

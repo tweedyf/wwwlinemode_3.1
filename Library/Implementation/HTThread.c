@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								     HTThread.c
 **	MULTIPLE THREAD SOCKET MANAGEMENT
 **

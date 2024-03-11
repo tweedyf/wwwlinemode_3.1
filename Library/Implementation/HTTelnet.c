@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								     HTTelnet.c
 **	TELNET ACCESS, ROLIGIN, etc.
 **

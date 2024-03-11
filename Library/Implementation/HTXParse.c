@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								   HTXParse.c
 **	EXTPARSE CLASS
 **

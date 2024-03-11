@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*								     HTSocket.c
 **	MANAGES READ AND WRITE TO AND FROM THE NETWORK
 **

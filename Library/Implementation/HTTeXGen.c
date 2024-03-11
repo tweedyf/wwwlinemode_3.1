@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								     HTTeXGen.c
 **	HTML -> LaTeX CONVERTER
 **

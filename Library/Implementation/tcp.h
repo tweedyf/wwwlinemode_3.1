@@ -1026,8 +1026,8 @@ extern int errno;
 #endif
 
 #ifndef HAVE_STRERROR                             /* Otherwise use the table */
-extern char *sys_errlist[];
-extern int sys_nerr;
+//extern char *sys_errlist[];
+//extern int sys_nerr;
 #endif/*
 
   DEFINITION OF SOCKET DESRCIPTORES

@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*								       HTNews.c
 **	NEWS ACCESS
 **

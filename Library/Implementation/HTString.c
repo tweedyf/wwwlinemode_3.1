@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*								     HTString.c
 **	DYNAMIC STRING UTILITIES
 **
@@ -73,7 +74,7 @@ PUBLIC int strncasecomp ARGS3(CONST char*,a, CONST char *,b, int,n)
 
 /*
  * strcasestr(s1,s2) -- like strstr(s1,s2) but case-insensitive.
- */
+
 PUBLIC char * strcasestr ARGS2(char *,	s1,
 			       char *,	s2)
 {
@@ -104,7 +105,7 @@ PUBLIC char * strcasestr ARGS2(char *,	s1,
 		s1,s2);
     return NULL;
 }
-
+ */
 
 
 /*	Allocate a new copy of a string, and returns it
@@ -353,7 +354,7 @@ PUBLIC long HTGetTimeZoneOffset NOARGS
 #endif /* HT_REENTRANT */
 	if (daylight && local->tm_isdst>0) {		   /* daylight time? */
 #ifndef NO_ALTZONE
-	    HTTimeZone = altzone;
+//	    HTTimeZone = altzone;
 #else
  	    /* Assumes a fixed DST offset of 1 hour, which is probably wrong */
  	    HTTimeZone = timezone - 3600;

@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								    HTHist.c
 **	NAVIGATION MANAGER
 **

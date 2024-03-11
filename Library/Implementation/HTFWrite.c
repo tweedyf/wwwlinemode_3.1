@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*							       	    HTFWrite.c
 **	FILE WRITER
 **

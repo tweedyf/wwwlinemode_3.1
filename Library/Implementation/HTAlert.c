@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*								      HTAlert.c
 **	DISPLAYING MESSAGES AND GETTING INPUT FOR LINEMODE BROWSER
 **

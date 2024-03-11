@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*							              HTWrite.c
 **	FILE WRITER BASED ON A SOCKFD
 **

@@ -1,3 +1,5 @@
+#include <unistd.h>
+#include <pwd.h>
 /*									HTTCP.c
 **	GENERIC COMMUNICATION CODE
 **

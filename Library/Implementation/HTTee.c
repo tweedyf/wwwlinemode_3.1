@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*									 HTee.c
 **	TEE CLASS STREAM DEFINITION
 **

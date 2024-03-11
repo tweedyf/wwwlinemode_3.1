@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*								       HTFile.c
 **	FILE ACCESS
 **

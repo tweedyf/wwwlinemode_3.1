@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*                                                                 String handling for libwww
                                     STRING MANAGEMENT
                                              
@@ -46,7 +47,7 @@ Case-insensitive strstr
    This works like strstr() but is not case-sensitive.
    
  */
-extern char * strcasestr PARAMS((char * s1, char * s2));/*
+/*extern char * strcasestr PARAMS((char * s1, char * s2));/*
 
 Strip white space off a string
 

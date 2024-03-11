@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								      HTBTree.c
 **	BINARY TREE FOR SORTING THINGS
 **

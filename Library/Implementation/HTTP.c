@@ -1,3 +1,4 @@
+#include <unistd.h>
 /*									 HTTP.c
 **	MULTITHREADED IMPLEMENTATION OF HTTP CLIENT
 **

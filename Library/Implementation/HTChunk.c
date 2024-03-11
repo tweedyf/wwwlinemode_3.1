@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								      HTChunk.c
 **	CHUNK HANDLING:	FLEXIBLE ARRAYS
 **

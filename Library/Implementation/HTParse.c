@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								      HTParse.c
 **	URI MANAGEMENT
 **

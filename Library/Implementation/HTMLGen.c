@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								      HTMLGen.c
 **	HTML GENERATOR
 **

@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*								       HTList.c
 **	MANAGEMENT OF LINKED LISTS
 **
