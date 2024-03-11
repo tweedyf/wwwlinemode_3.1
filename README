@@ -1,0 +1,229 @@
+                                                                        Read Me
+                     W3C SOURCE CODE DISTRIBUTION PACKAGES
+                                       
+   
+   ___________________________________
+   
+        (c) COPYRIGHT MIT 1995.
+        Please first read the full copyright statement in the file COPYRIGH.
+
+   This is the README file which you get when you unwrap one of our tar files.
+   The package contains source code for building World-Wide Web applications
+   and related reference applications. In its full contents it contains the
+   source code for the following modules:
+   
+      W3C Reference Library
+      
+      CERN HTTPD
+      
+      Line Mode Browser
+      
+      Next Browser/Editor
+      
+   At the bottom of this file, you will find pointers to more information.
+   
+Handling the Distribution Files
+
+   All distribution files contain the source code for each of the modules. W3C
+   also provides a wide set of precompiled binaries which are available either
+   directly via HTTP or via anonymous FTP from ftp.w3.org.
+   
+   All of the distribution packets are available as compressed tar files, and
+   some are also available as zip files. For the compressed tar files, first
+   uncompress and untar the file <dist>.tar.Z where <dist> is the name of the
+   specific distribution:
+   
+        uncompress <dist>.tar.Z
+
+   Then untar the file by typing
+   
+        tar xf <dist>.tar
+
+   For the zip files, type the following:
+   
+        unzip <dist>.zip
+
+Generated Directory structure
+
+   The tar files are all designed to be unwrapped in the same (this) directory.
+   They create different parts of a common directory tree under that directory.
+   There may be some duplication. They also generate a few files in this
+   directory: README, COPYRIGH, and some installation instructions. The
+   structure of the untar'ed package is as follows (directories):
+   
+        WWW                             Top-node
+
+        WWW/All/*/Makefile.include      Platform dependent make files
+
+        WWW/Library                     W3C Reference Library
+        WWW/Library/Implementation      Source Code
+        WWW/Library/<platform>/*        Platform dependent object files
+
+        WWW/Daemon                      CERN HTTPD
+        WWW/Daemon/Implementation       Source Code
+        WWW/Daemon/<platform>/*         Platform dependent object files
+
+        WWW/LineMode                    LineMode Browser
+        WWW/LineMode/Implementation     Source Code
+        WWW/LineMode/<platform>/*       Platform dependent object files
+
+        WWW/Next                        Next Browser/Editor
+        WWW/Next/Implementation         Source Code
+        WWW/Next/<platform>/*           Platform dependent object files
+
+   Some or more of these directories might not be there. This depends on the
+   number of distribution files. In general there is one distribution file pr.
+   module (Library, LineMode Browser, and Daemon). The Library distribution
+   file is required for all the other module.
+   
+Compilation
+
+   Compilation can be put into two groups depending on if the platform is
+   supported in the BUILD script or not. The BUILD script is placed in the WWW
+   directory and you can use it to compile and link the W3C applications. The
+   BUILD script figures out what platform you are on and generates a Makefile
+   which consists of a platform independent part and a platform dependent part.
+   
+  COMPILATION ON ALREADY SUPPORTED PLATFORMS
+  
+   To BUILD any of the applications go to the WWW directory and type
+   
+        ./BUILD library
+
+        ./BUILD daemon
+
+        ./BUILD linemode
+
+   or simply
+   
+        ./BUILD
+
+   in order to BUILD all applications
+   
+  COMPILATION ON NON-SUPPORTED PLATFORMS
+  
+   This will require some more work, but please read the online documentation
+   [1].
+   
+   For Windows NT we have a special README-WinNT file provided by Charlie
+   Brooks.
+   
+W3C Reference Library
+
+   The W3C Reference Library is a general code base that can be used to build
+   clients and servers. It contains code for accessing HTTP, FTP, Gopher, News,
+   WAIS, Telnet servers, and the local file system. Furthermore it provides
+   modules for parsing, managing and presenting hypertext objects to the user
+   and a wide spectra of generic programming utilities. The Library is the
+   basis for many World-Wide Web applications and all the W3C software is build
+   on top of it. The Library is a required part of all other W3C applications
+   in this distribution.
+   
+   You can get more information from the online documentation [2] and if you
+   don't have a WWW client then telnet to telnet.w3.org (no userid or password
+   required) and you will get the Line Mode Browser.
+   
+LineMode Browser
+
+   The Line Mode Browser is a character based World-Wide Web Browser.  It is
+   developed for use on dumb terminals and as a test tool for the Common Code
+   Library. It can be run in interactive mode, non- interactive mode and as a
+   proxy client. Furthermore it gives a variety of possibilities for data
+   format conversion, filtering etc. It is primarily intended as a test-tool
+   for quick access to the Web or used in batch jobs.
+   
+   Installation is very simple as the application can run without any
+   particular seup. You can specify your own HOME PAGE using the WWW_HOME
+   environment variable. Remember toy setup a NNTPSERVER environment variable
+   before you try to access a news server.
+   
+   You can get more information from the is available at online documentation
+   [3] and if you don't have a WWW client then telnet to telnet.w3.org (no
+   userid or password required) and you will get the Line Mode Browser.
+   
+Server
+
+   CERN httpd is a generic public domain full-featured hypertext server which
+   can be used as a regular HTTP server. The running typically on port 80 to
+   serve hypertext and other documents, and also as a proxy -- a server on a
+   firewall machine -- that provides access for people inside a firewall to the
+   outside world. When running as proxy httpd may be configured to do caching
+   of documents resulting in faster response times.
+   
+   Follow instructions above for compiling and then go on to "Installing the
+   basic W3 server".
+   
+   You can get more information from the is available at online documentation
+   [4] and if you don't have a WWW client then telnet to telnet.w3.org (no
+   userid or password required) and you will get the Line Mode Browser.
+   
+NeXTStep Browser/Editor
+
+   The browser for the NeXT is those files contained in the application
+   directory WWW/Next/Implementation/WorldWideWeb.app and is compiled. When you
+   install the app, you may want to configure the default page,
+   WorldWideWeb.app/default.html. These must point to some useful information!
+   You should keep it up to date with pointers to info on your site and
+   elsewhere. If you use the W3C home page note there is a link at the bottom
+   to the master copy on our server. You should set up the address of your
+   local news server with
+   
+        dwrite WorldWideWeb NewsHost news
+
+   replacing the last word with the actual address of your news host. See
+   Installation instructions.
+   
+   You can get more information from the is available at is available at online
+   documentation [5] and if you don't have a WWW client then telnet to
+   telnet.w3.org (no userid or password required) and you will get the Line
+   Mode Browser.
+   
+Places to contact
+
+   If you encounter problems, would like to feed back suggestions good ideas
+   etc. then please contact the following addresses:
+   
+      libwww@w3.org regarding the W3C Reference Library
+      
+      httpd@w3.org regarding the CERN HTTPD
+      
+      www-bug@w3.org regarding the Line Mode Browser
+      
+      www-bug@w3.org regarding the Next Browser/Editor
+      
+Useful Pointers
+
+   These are the locations where you can get more information.
+   
+  W3C MEMBERS
+  
+      http://www.w3.org/member/WWW/Library/User/Platform/Porting.html
+      
+      http://www.w3.org/member/WWW/Library/
+      
+      http://www.w3.org/member/WWW/LineMode/
+      
+      http://www.w3.org/member/WWW/Daemon/
+      
+      http://www.w3.org/member/WWW/NextStep/Status.html
+      
+  OTHER
+  
+      http://www.w3.org/hypertext/WWW/Library/User/Platform/Porting.html
+      
+      http://www.w3.org/hypertext/WWW/Library/
+      
+      http://www.w3.org/hypertext/WWW/LineMode/
+      
+      http://www.w3.org/hypertext/WWW/Daemon/
+      
+      http://www.w3.org/hypertext/WWW/NextStep/Status.html
+      
+   Have fun!
+   
+   
+   ___________________________________
+   
+                                                      Henrik Frystyk, July 1995
+                                                                               
+   
